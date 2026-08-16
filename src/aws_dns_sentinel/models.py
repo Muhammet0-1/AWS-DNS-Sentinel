@@ -155,7 +155,7 @@ class DNSRecord:
         return data
 
     @classmethod
-    def from_route53(cls, data: Mapping[str, Any]) -> "DNSRecord":
+    def from_route53(cls, data: Mapping[str, Any]) -> DNSRecord:
         try:
             allowed = {
                 "Name",
@@ -185,7 +185,7 @@ class DNSRecord:
             raise ValidationError("malformed Route 53 resource record set") from exc
 
     @classmethod
-    def from_dict(cls, data: Mapping[str, Any]) -> "DNSRecord":
+    def from_dict(cls, data: Mapping[str, Any]) -> DNSRecord:
         try:
             allowed = {
                 "name",
@@ -214,7 +214,7 @@ class DNSRecord:
             raise ValidationError("malformed baseline DNS record") from exc
 
     @classmethod
-    def from_legacy_dict(cls, data: Mapping[str, Any]) -> "DNSRecord":
+    def from_legacy_dict(cls, data: Mapping[str, Any]) -> DNSRecord:
         try:
             allowed = {"Name", "Type", "Value", "TTL"}
             if set(data) - allowed:
